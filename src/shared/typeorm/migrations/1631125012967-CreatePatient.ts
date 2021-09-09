@@ -31,7 +31,7 @@ export class CreatePatient1631125012967 implements MigrationInterface {
                 },
                 {
                     name:"data_nascimento",
-                    type: "date"
+                    type: "timestamp with time zone"
                 },
                 {
                     name: "created_at",
