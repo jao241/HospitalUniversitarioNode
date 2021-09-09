@@ -1,5 +1,5 @@
 import { getCustomRepository } from "typeorm";
-import Paciente from "../typeorm/entities/paciente";
+import Paciente from "../typeorm/entities/Paciente";
 import PacienteRepository from "../typeorm/repositories/PacienteRepository";
 
 export default class ListAllPatientService{

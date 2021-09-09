@@ -1,6 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import AppError from "../../../shared/errors/AppError";
-import Paciente from "../typeorm/entities/paciente";
+import Paciente from "../typeorm/entities/Paciente";
 import PacienteRepository from "../typeorm/repositories/PacienteRepository";
 
 interface IRequest{
