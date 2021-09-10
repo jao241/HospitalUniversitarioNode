@@ -21,7 +21,7 @@ export default class PatientController{
     }
     public async showByNome(request:Request, response:Response):Promise<Response>{
         const listOnePatientByNomeService = new ListOnePatientByNomeService();
-        const {nome} = request.body;
+        const {nome} = request.params;
         const paciente = await listOnePatientByNomeService.execute({nome});
         return response.status(200).json(paciente);
     }
@@ -33,7 +33,7 @@ export default class PatientController{
     }
     public async showByCPF(request:Request, response:Response):Promise<Response>{
         const listOnePatientByCPFService = new ListOnePatientByCPFService();
-        const {cpf} = request.body;
+        const {cpf} = request.params;
         const paciente = await listOnePatientByCPFService.execute({cpf});
         return response.status(200).json(paciente);
     }
