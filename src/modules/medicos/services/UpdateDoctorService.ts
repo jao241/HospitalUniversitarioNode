@@ -7,19 +7,21 @@ import MedicoRepository from "../typeorm/repositories/MedicoRepository";
 interface IRequest{
     id:string;
     nome:string;
-    crm:number;
+    crm:string;
+    cpf:string;
     tipo:string;
     senha?:string;
     ano_residencia?:number;
     titulacao?:string;
 }
 export default class UpdateDoctorService{
-    public async execute({id, nome, crm, tipo, senha, ano_residencia, titulacao}:IRequest):Promise<Medico>{
+    public async execute({id, nome, crm, cpf, tipo, senha, ano_residencia, titulacao}:IRequest):Promise<Medico>{
         const medicoRepository = getCustomRepository(MedicoRepository);
         const medico = await medicoRepository.findOne(id);
         if(medico){
             medico.nome = nome;
             medico.crm = crm;
+            medico.cpf = cpf;
             medico.tipo = tipo;
             if(senha){
                 medico.senha = await hash(senha, 10);
