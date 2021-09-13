@@ -6,8 +6,8 @@ export default class Medico{
     id:string;
     @Column()
     nome:string;
-    @Column("int")
-    crm:number;
+    @Column()
+    crm:string;
     @Column()
     cpf:string;
     @Column()
