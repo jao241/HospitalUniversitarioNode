@@ -1,6 +1,7 @@
-import { Repository } from "typeorm";
+import { EntityRepository, Repository } from "typeorm";
 import Medico from "../entities/Medico";
 
+@EntityRepository(Medico)
 export default class MedicoRepository extends Repository<Medico>{
     public async findByName(nome:string):Promise<Medico | undefined>{
         const medico = this.findOne({
