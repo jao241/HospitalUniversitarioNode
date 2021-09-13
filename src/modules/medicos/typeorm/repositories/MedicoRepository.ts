@@ -10,7 +10,7 @@ export default class MedicoRepository extends Repository<Medico>{
         });
         return medico;
     }
-    public async findByCRM(crm:number):Promise<Medico | undefined>{
+    public async findByCRM(crm:string):Promise<Medico | undefined>{
         const medico = this.findOne({
             where: {
                 crm

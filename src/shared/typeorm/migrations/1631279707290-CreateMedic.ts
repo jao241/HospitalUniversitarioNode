@@ -19,7 +19,7 @@ export class CreateMedic1631279707290 implements MigrationInterface {
                 },
                 {
                     name: "crm",
-                    type: "int"
+                    type: "varchar"
                 },
                 {
                     name: "cpf",
