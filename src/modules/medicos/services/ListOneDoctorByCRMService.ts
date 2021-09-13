@@ -4,7 +4,7 @@ import Medico from "../typeorm/entities/Medico";
 import MedicoRepository from "../typeorm/repositories/MedicoRepository";
 
 interface IRequest{
-    crm:number;
+    crm:string;
 }
 export default class ListOneDoctorByCRMService{
     public async execute({crm}:IRequest):Promise<Medico>{
