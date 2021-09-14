@@ -14,7 +14,7 @@ export default class Solicitacao{
     data_pedido:Date;
     @Column("date")
     data_exame:Date;
-    @Column("time")
+    @Column()
     hora_exame:string;
     @Column()
     hipotese:string;
