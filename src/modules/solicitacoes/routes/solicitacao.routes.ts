@@ -8,6 +8,6 @@ solicitacaoRoutes.post("/", solicitacaoController.create);
 solicitacaoRoutes.get("/", solicitacaoController.index);
 solicitacaoRoutes.get("/:id", solicitacaoController.show);
 solicitacaoRoutes.put("/:id", solicitacaoController.update);
-solicitacaoRoutes.delete("/;id", solicitacaoController.delete);
+solicitacaoRoutes.delete("/:id", solicitacaoController.delete);
 
 export default solicitacaoRoutes;
