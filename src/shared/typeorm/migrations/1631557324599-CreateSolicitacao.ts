@@ -15,7 +15,7 @@ export class CreateSolicitacao1631557324599 implements MigrationInterface {
                 },
                 {
                     name: "medico_crm",
-                    type: "varchar"                    
+                    type: "uuid"                    
                 },
                 {
                     name: "paciente_id",
