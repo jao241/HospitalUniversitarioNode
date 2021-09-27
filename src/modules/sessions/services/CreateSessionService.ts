@@ -11,7 +11,7 @@ interface IRequest{
 export default class CreateSessionService{
     public async execute({crm, senha}:IRequest):Promise<Medico>{
         const medicoRepository = getCustomRepository(MedicoRepository);
-        const medico = await medicoRepository.findOne(crm);
+        const medico = await medicoRepository.findByCRM(crm);
         if(!medico){
             throw new AppError("Doctor not found!");
         }
