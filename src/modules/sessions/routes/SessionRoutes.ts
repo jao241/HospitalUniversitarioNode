@@ -1,6 +1,5 @@
-import { celebrate, Segments } from "celebrate";
+import { celebrate, Segments, Joi } from "celebrate";
 import { Router } from "express";
-import Joi from "joi";
 import SessionController from "../controllers/SessionController";
 
 const sessionController = new SessionController();
@@ -11,6 +10,6 @@ sessionRoutes.post("/", celebrate({
         crm:Joi.string().required(),
         senha:Joi.string().required()
     }
-}), sessionController.crate);
+}), sessionController.create);
 
 export default sessionRoutes;
