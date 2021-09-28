@@ -6,7 +6,7 @@ import AppError from "../../../shared/errors/AppError";
 
 interface IRequest{
     nome:string;
-    crm:number;
+    crm:string;
     cpf:string;
     tipo:string;
     senha?:string;
