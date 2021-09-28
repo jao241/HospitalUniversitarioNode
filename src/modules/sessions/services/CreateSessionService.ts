@@ -17,7 +17,7 @@ export default class CreateSessionService{
         }
         const senhaCorreta = await compare(senha, medico.senha);
         if(!senhaCorreta){
-            throw new AppError("Incorrect crm/senha combination.");
+            throw new AppError("Incorrect crm|senha combination.");
         }
         return medico;
     }
