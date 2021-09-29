@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 import Auth from "../../config/Auth";
-import AppError from "../../shared/errors/AppError";
+import AppError from "../errors/AppError";
 
 export default function autenticarToken(request:Request, response:Response, next: NextFunction):void{
     const bearerToken = request.headers.authorization;
