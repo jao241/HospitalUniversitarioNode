@@ -25,7 +25,7 @@ export default class CreateSessionService{
         if(!senhaCorreta){
             throw new AppError("Incorrect crm|senha combination.");
         }
-        const token = sign({}, Auth.subject, {
+        const token = sign({}, Auth.secret, {
             subject: medico.id,
             expiresIn: Auth.expiresIn
         })
