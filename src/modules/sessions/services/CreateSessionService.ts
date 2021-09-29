@@ -28,7 +28,7 @@ export default class CreateSessionService{
         const token = sign({}, Auth.secret, {
             subject: medico.id,
             expiresIn: Auth.expiresIn
-        })
+        });
         return {
             medico,
             token
