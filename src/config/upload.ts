@@ -1,4 +1,4 @@
-import multer, { memoryStorage } from "multer";
+import multer from "multer";
 
 export default {
     storage: multer.memoryStorage()
