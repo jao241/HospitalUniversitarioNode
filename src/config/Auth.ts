@@ -1,4 +1,4 @@
 export default{
-    subject: "AAA",
+    secret: "AAA",
     expiresIn: "1d"
 }
