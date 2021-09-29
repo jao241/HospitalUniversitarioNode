@@ -1,4 +1,3 @@
-import { request } from "express";
 import { getRepository } from "typeorm";
 import Laudo from "../typeorm/entities/Laudo";
 
