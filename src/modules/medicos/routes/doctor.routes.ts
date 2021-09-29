@@ -1,11 +1,12 @@
 import { Router } from "express";
 import DoctorController from "../controllers/DoctorController";
 import { celebrate, Segments, Joi } from "celebrate";
+import autenticarToken from "../../../shared/middlewares/TokenAutentication";
 
 const doctorRoutes = Router();
 const doctorController = new DoctorController();
 
-doctorRoutes.post("/", celebrate({
+doctorRoutes.post("/", autenticarToken, celebrate({
     [Segments.BODY]:{
         nome:Joi.string().required(),
         crm:Joi.string().required(),
@@ -16,33 +17,33 @@ doctorRoutes.post("/", celebrate({
         titulacao:Joi.string().required()
     }
 }), doctorController.create);
-doctorRoutes.get("/", doctorController.index);
+doctorRoutes.get("/", autenticarToken, doctorController.index);
 doctorRoutes.get("/:id", celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid()
     }
 }), doctorController.listOneDoctorById);
-doctorRoutes.get("/name/:nome", celebrate({
+doctorRoutes.get("/name/:nome", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         nome:Joi.string().required()
     }
 }), doctorController.listOneDoctorByName);
-doctorRoutes.get("/cpf/:cpf", celebrate({
+doctorRoutes.get("/cpf/:cpf", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         cpf:Joi.string().required()
     }
 }), doctorController.listOneDoctorByCPF);
-doctorRoutes.get("/crm/:crm", celebrate({
+doctorRoutes.get("/crm/:crm", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         crm:Joi.string().required()
     }
 }), doctorController.listOneDoctorByCRM);
-doctorRoutes.put("/:id", celebrate({
+doctorRoutes.put("/:id", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid().required()
     }
 }), doctorController.update);
-doctorRoutes.delete("/:id", celebrate({
+doctorRoutes.delete("/:id", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid().required()
     }

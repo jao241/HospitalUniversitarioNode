@@ -1,10 +1,11 @@
 import { Router } from "express";
 import SolicitacaoController from "../controllers/SolicitacaoController";
 import { celebrate, Segments, Joi } from "celebrate";
+import autenticarToken from "../../../shared/middlewares/TokenAutentication";
 const solicitacaoRoutes = Router();
 const solicitacaoController = new SolicitacaoController();
 
-solicitacaoRoutes.post("/", celebrate({
+solicitacaoRoutes.post("/", autenticarToken, celebrate({
     [Segments.BODY]:{
         medico_crm:Joi.string().required(),
         paciente_id:Joi.string().uuid().required(),
@@ -15,18 +16,18 @@ solicitacaoRoutes.post("/", celebrate({
         hipotese:Joi.string().required()
     }
 }), solicitacaoController.create);
-solicitacaoRoutes.get("/", solicitacaoController.index);
-solicitacaoRoutes.get("/:id", celebrate({
+solicitacaoRoutes.get("/", autenticarToken, solicitacaoController.index);
+solicitacaoRoutes.get("/:id", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid().required()
     }
 }), solicitacaoController.show);
-solicitacaoRoutes.put("/:id", celebrate({
+solicitacaoRoutes.put("/:id", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid().required()
     }
 }), solicitacaoController.update);
-solicitacaoRoutes.delete("/:id", celebrate({
+solicitacaoRoutes.delete("/:id", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid().required()
     }

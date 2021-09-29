@@ -2,6 +2,7 @@ import { Router } from "express";
 import LaudoController from "../controllers/LaudoController";
 import multer from "multer";
 import {celebrate, Segments, Joi} from "celebrate";
+import autenticarToken from "../../../shared/middlewares/TokenAutentication";
 
 const laudoRoutes = Router();
 const laudoController = new LaudoController();
@@ -10,7 +11,8 @@ const upload = multer({
 });
 
 laudoRoutes.post("/", 
-upload.single("conclusao"), 
+upload.single("conclusao"),
+autenticarToken, 
 celebrate({
     [Segments.BODY]:{
         descricao: Joi.string().required(),
@@ -21,7 +23,7 @@ celebrate({
     }
 })
 , laudoController.create);
-laudoRoutes.get("/", laudoController.index);
+laudoRoutes.get("/", autenticarToken, laudoController.index);
 laudoRoutes.get("/:id", 
 celebrate({
     [Segments.PARAMS]:{
@@ -31,6 +33,7 @@ celebrate({
 , laudoController.show);
 laudoRoutes.put("/:id", 
 upload.single("conclusao"),
+autenticarToken,
 celebrate({
     [Segments.PARAMS]:{
         id: Joi.string().uuid().required()
@@ -45,6 +48,7 @@ celebrate({
 })
 , laudoController.update);
 laudoRoutes.delete("/:id",
+autenticarToken,
 celebrate({
     [Segments.PARAMS]:{
         id: Joi.string().uuid().required()

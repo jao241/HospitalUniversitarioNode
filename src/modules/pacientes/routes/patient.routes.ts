@@ -1,10 +1,11 @@
 import { Router } from "express";
 import PatientController from "../controllers/PatientController";
 import { celebrate, Segments, Joi } from "celebrate";
+import autenticarToken from "../../../shared/middlewares/TokenAutentication";
 const patientRoutes = Router();
 const patientController = new PatientController();
 
-patientRoutes.post("", celebrate({
+patientRoutes.post("", autenticarToken, celebrate({
     [Segments.BODY]:{
         nome: Joi.string().required(),
         genero:Joi.string().required(),
@@ -13,28 +14,28 @@ patientRoutes.post("", celebrate({
         data_nascimento:Joi.date().required()
     }
 }), patientController.create);
-patientRoutes.get("", patientController.index);
-patientRoutes.get("/:id", celebrate({
+patientRoutes.get("", autenticarToken, patientController.index);
+patientRoutes.get("/:id", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid().required()
     }
 }), patientController.showById);
-patientRoutes.get("/nome/:nome", celebrate({
+patientRoutes.get("/nome/:nome", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         nome:Joi.string().required()
     }
 }), patientController.showByNome);
-patientRoutes.get("/cpf/:cpf", celebrate({
+patientRoutes.get("/cpf/:cpf", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         cpf:Joi.string().required()
     }
 }), patientController.showByCPF);
-patientRoutes.put("/:id", celebrate({
+patientRoutes.put("/:id", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid().required()
     }
 }), patientController.update);
-patientRoutes.delete("/:id", celebrate({
+patientRoutes.delete("/:id", autenticarToken, celebrate({
     [Segments.PARAMS]:{
         id:Joi.string().uuid().required()
     }
