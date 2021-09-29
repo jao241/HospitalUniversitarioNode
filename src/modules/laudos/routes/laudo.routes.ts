@@ -1,8 +1,7 @@
 import { Router } from "express";
 import LaudoController from "../controllers/LaudoController";
 import multer from "multer";
-import {celebrate, Segments} from "celebrate";
-import Joi from "joi";
+import {celebrate, Segments, Joi} from "celebrate";
 
 const laudoRoutes = Router();
 const laudoController = new LaudoController();
