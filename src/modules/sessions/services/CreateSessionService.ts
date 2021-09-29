@@ -1,6 +1,7 @@
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { getCustomRepository } from "typeorm";
+import Auth from "../../../config/Auth";
 import AppError from "../../../shared/errors/AppError";
 import Medico from "../../medicos/typeorm/entities/Medico";
 import MedicoRepository from "../../medicos/typeorm/repositories/MedicoRepository";
@@ -24,9 +25,9 @@ export default class CreateSessionService{
         if(!senhaCorreta){
             throw new AppError("Incorrect crm|senha combination.");
         }
-        const token = sign({}, "AAA", {
+        const token = sign({}, Auth.subject, {
             subject: medico.id,
-            expiresIn: "60s"
+            expiresIn: Auth.expiresIn
         })
         return {
             medico,
