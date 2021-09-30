@@ -11,7 +11,7 @@ interface IRequest{
     hipotese:string;
 }
 export default class CreateSolicitacaoService{
-    public async execute({medico_crm, paciente_id, status, data_pedido, data_exame, hora_exame, hipotese,}:IRequest):Promise<Solicitacao>{
+    public async execute({medico_crm, paciente_id, status, data_pedido, data_exame, hora_exame, hipotese}:IRequest):Promise<Solicitacao>{
         const solicitacaoRepository = getRepository(Solicitacao);
         const solicitacao = solicitacaoRepository.create({
             medico_crm,
